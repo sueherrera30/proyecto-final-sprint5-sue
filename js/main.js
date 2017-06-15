@@ -9,6 +9,7 @@ var api = {
 var cargarPagina = function () {
  cargamosTemas();
  $("#formulario").submit(agregarTema);
+ $("#barrita").submit(filtrarTemas);
  $('.modal').modal();
 };
 
@@ -39,7 +40,6 @@ $almacenTemas.append($fila);
 };
 
 var agregarTema = function (e){
-	
 	e.preventDefault();
 	var autorTema = $("#autor").val();
 	var temita = $("#tema").val();
@@ -54,21 +54,23 @@ var agregarTema = function (e){
 /*buscar elementos:*/
 /*arreglo  vacio donde guardaremos info que nos brinda la api*/
 var temaAbuscar = [];
+/*volvemos a obtener datos de api*/
 $.getJSON(api.url, function(temas) {
    temaAbuscar = temas;
  });
-
 	var filtrarTemas = function(e){
-		e.preventDefault();
+	e.preventDefault();
 	/*almacenamos el valor del input y lo pasamos a minusculas*/
 	var temaBuscado = $("#search").val().toLowerCase();
 	/*almacenamos a un arreglo nuevo*/
 	var buscado = temaAbuscar.filter(function(tema){
-		return tema.buscado.toLocaleLowerCase().indexOf(temaBuscado)>= 0;
-	});
-	 temaNuevo(buscado);
+		return tema.author_name.toLocaleLowerCase().indexOf(temaBuscado)>= 0;
 		
+	});
+		console.log(buscado);
+		 agregarTema(buscado);
 	};
+
 /*cargamos documento*/
 $(document).ready(cargarPagina);
 
