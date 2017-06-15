@@ -24,6 +24,19 @@
     </div>
   </nav>
    <!--termina navbar-->
+    <!--barra de busqueda-->
+  <nav>
+    <div class="nav-wrapper white">
+      <form id="search-form">
+        <div class="input-field">
+          <input id="search" type="search" required placeholder="busca tema">
+          <label class="label-icon " for="search "><i class="material-icons red-text text-darken-1">search</i></label>
+          <i class="material-icons red-text text-darken-1">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+   <!--termina barra de busqueda-->
    
    <!--seccion intruducción-->
    <h5 class="center red-text text-darken-1">Bienvenida.</h5>
@@ -37,37 +50,53 @@
      </div>
      <!--termina boton agrega tema-->
      
+     <!--tabla donde se almacenan temas-->
+     <section class="row">
+       <table class="centered responsive-table striped col s6 offset-s3">
+        <thead class="red-text text-darken-1">
+			<th>T E M A <img src="assets/img/thruster.jpg" alt="thruster" class="pesas"></th>
+			<th>autor ❤</th>
+		</thead>
+		<tbody id="nuevos-temas"></tbody>
+	   </table>
+     </section>
+     
+    <!--termina tabla donde se almacenan temas-->
+     
      <!--seccion modal de agregar tema-->
      <div id="modal1" class="modal">
       <div class="modal-content">
        <h5 class="red-text text-darken-1 center"><img src="assets/img/pesa.png" class="pesas" alt="pesa-crossfit">Agrega un tema:</h5>
-      <div class="row">
-		<form class="col s8 offset-s2">
-		  <div class="row">
-			<div class="input-field col s12">
-			  <textarea id="textarea1" class="materialize-textarea"></textarea>
-			  <label for="textarea1">Escribe tema:</label>
+		<form id="formulario">
+		 <div class="row">
+			<div class=" col s8 offset-s2">
+			  T E M A :
+			  <div class="input-field inline">
+				<input id="tema" type="text" class="validate">
+				<label for="tema" data-error="wrong" data-success="right">escribe tema:</label>
+			  </div>
 			</div>
-		  </div>
-		</form>
-      </div>
-       
-      <div class="row">
+         </div>
+         <div class="row">
         <div class=" col s8 offset-s2">
           Por:
           <div class="input-field inline">
             <input id="autor" type="text" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Autor</label>
+            <label for="autor" data-error="wrong" data-success="right">Autor</label>
           </div>
         </div>
       </div>
-          
+         <button class="modal-action modal-close waves-effect waves-light red-text text-accent-2 btn-flat " type="submit" name="action" id="enviar">Agregar
+        </button>
+      
+		</form>
       </div>
       <div class="modal-footer">
-       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+        
       </div>
      </div>
      <!--termina modal de agregar tema-->
+     
     
 
    
