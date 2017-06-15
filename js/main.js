@@ -29,8 +29,8 @@ $.getJSON(api.url, function(temas) {
 		return tema.author_name.toLocaleLowerCase().indexOf(temaBuscado)>= 0;
 	});
 		console.log(buscado);
-		$("#nuevos-temas").html("");
-	
+		/*$("#nuevos-temas").html("");*/
+		$("#nuevos-temas").empty();
 		buscado.forEach(temaNuevo);
 		 /*temaNuevo(buscado);*/
 	};
