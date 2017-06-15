@@ -13,6 +13,29 @@ var cargarPagina = function () {
  $('.modal').modal();
 };
 
+/*buscar elmentos:*/
+/*arreglo  vacio donde guardaremos info que nos brinda la api*/
+var temaAbuscar = [];
+/*volvemos a obtener datos de api*/
+$.getJSON(api.url, function(temas) {
+   temaAbuscar = temas;
+ });
+	var filtrarTemas = function(e){
+	e.preventDefault();
+	/*almacenamos el valor del input y lo pasamos a minusculas*/
+	var temaBuscado = $("#search").val().toLowerCase();
+	/*almacenamos a un arreglo nuevo*/
+	var buscado = temaAbuscar.filter(function(tema){
+		return tema.author_name.toLocaleLowerCase().indexOf(temaBuscado)>= 0;
+	});
+		console.log(buscado);
+		$("#nuevos-temas").html("");
+	
+		buscado.forEach(temaNuevo);
+		 /*temaNuevo(buscado);*/
+	};
+
+
 var cargamosTemas = function (){
  $.getJSON(api.url, function(temas) {
    temas.forEach(temaNuevo);
@@ -20,6 +43,10 @@ var cargamosTemas = function (){
 };
 
 var temaNuevo = function (tema){
+ /* para limpiar la tabla??*/
+/*  var almacenTemas = $("#almacen-temas");
+  almancenTemas.empty();*/
+	
  var $autor = tema.author_name;
  var $contenido = tema.content;
 /*creamos de forma dinamica*/
@@ -51,25 +78,7 @@ var agregarTema = function (e){
 	});
 	
 };
-/*buscar elementos:*/
-/*arreglo  vacio donde guardaremos info que nos brinda la api*/
-var temaAbuscar = [];
-/*volvemos a obtener datos de api*/
-$.getJSON(api.url, function(temas) {
-   temaAbuscar = temas;
- });
-	var filtrarTemas = function(e){
-	e.preventDefault();
-	/*almacenamos el valor del input y lo pasamos a minusculas*/
-	var temaBuscado = $("#search").val().toLowerCase();
-	/*almacenamos a un arreglo nuevo*/
-	var buscado = temaAbuscar.filter(function(tema){
-		return tema.author_name.toLocaleLowerCase().indexOf(temaBuscado)>= 0;
-		
-	});
-		console.log(buscado);
-		 agregarTema(buscado);
-	};
+
 
 /*cargamos documento*/
 $(document).ready(cargarPagina);
